@@ -1,8 +1,39 @@
-process-control (1.0.5-1) UNRELEASED; urgency=low
+process-control (1.0.6-1) UNRELEASED; urgency=low
 
   * in development
 
- -- Adam Roses Wight <awight@wikimedia.org>  Wed, 05 Apr 2017 22:52:14 -0700
+ -- Adam Roses Wight <awight@wikimedia.org>  Wed, 12 Apr 2017 13:02:01 -0700
+
+process-control (1.0.5-1) UNRELEASED; urgency=low
+
+  Required configuration changes:
+  * Job timeouts are given in minutes now, so must be converted from seconds.
+  * Take changes from the global config, like a new syslog format string and
+    default job timeout converted from seconds to minutes.
+
+  51b7309 add license file
+  5fc59fc Organize examples into their own directory
+  c776a36 Rename test to match new class name
+  aa8226e Log actual commandline rather than redundant parent job slug.
+  38ec852 Call a slug what it is
+  02bfbab Fix double-failmail after timeout.
+  193d8cb Implement "description" field
+  4b89de8 Mirror child process output to console
+  72f4343 Strip extra newline after job status
+  8965bb2 Include logfile path in failmails
+  d5311f0 Split job spec from job runner
+  460dc44 make logfile path statically
+  50a733e Handle commandline param like other fields.
+  e039455 Document a bit
+  7c6cc85 Remove debian metadata from the main repo
+  bea3ac1 Don't log logging settings
+  6d96434 Add host name to failmail subject
+  f8a5f36 Syslogs point at syslogd
+  4be29ec Merge "Add run-job[pid] to example syslog format"
+  4eeb7f0 Add run-job[pid] to example syslog format
+  e605d15 Timeout should be given in minutes
+
+ -- Adam Roses Wight <awight@wikimedia.org>  Wed, 12 Apr 2017 13:02:01 -0700
 
 process-control (1.0.4-1) UNRELEASED; urgency=low
 
