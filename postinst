@@ -1,0 +1,32 @@
+#!/bin/bash -e
+
+# Add service user if it doesn't exist already.
+if ! id -u process-control >&/dev/null
+then
+	adduser --no-create-home --home /nonexistent --system process-control
+fi
+
+# Make directories.
+dirs=("/var/cache/process-control"
+	"/var/lib/process-control"
+	"/var/log/process-control"
+	"/var/run/process-control")
+
+for path in "${dirs[@]}"
+do
+	if [ ! -d "$path" ]
+	then
+		mkdir -p "$path"
+		chown process-control "$path"
+	fi
+done
+
+# Hide logs from the public.
+chmod o-rwx /var/log/process-control
+
+if [ ! -f /etc/process-control.yaml ]
+then
+	cp /usr/share/doc/process-control/examples/process-control.example.yaml /etc/process-control.yaml
+fi
+
+#DEBHELPER#

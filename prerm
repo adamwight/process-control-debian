@@ -1,0 +1,20 @@
+#!/bin/bash -e
+
+# Remove directories.
+dirs=("/var/cache/process-control"
+	"/var/lib/process-control"
+	"/var/log/process-control"
+	"/var/run/process-control")
+
+for path in "${dirs[@]}"
+do
+	rmdir --ignore-fail-on-non-empty "$path"
+done
+
+# Remove etc file if it is unmodified.
+if cmp --quiet /usr/share/doc/process-control/examples/process-control.example.yaml /etc/process-control.yaml
+then
+	rm /etc/process-control.yaml
+fi
+
+#DEBHELPER#
